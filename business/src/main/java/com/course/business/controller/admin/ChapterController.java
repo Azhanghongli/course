@@ -1,6 +1,7 @@
 package com.course.business.controller.admin;
 
 
+import com.course.server.dto.ChapterDto;
 import com.course.server.dto.PageDto;
 import com.course.server.service.ChapterService;
 import org.slf4j.Logger;
@@ -26,5 +27,12 @@ public class ChapterController {
         LOG.info("pageDto: {}",pageDto);
         chapterService.list(pageDto);
         return pageDto;
+    }
+
+    @PostMapping("/save")
+    public ChapterDto save(@RequestBody ChapterDto chapterDto){
+        LOG.info("chapterDto: {}",chapterDto);
+        chapterService.save(chapterDto);
+        return chapterDto;
     }
 }

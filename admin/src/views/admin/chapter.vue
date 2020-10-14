@@ -132,7 +132,9 @@
     },
     mounted: function() {
       let _this = this;
+      _this.$refs.pagination.size = 5;
       _this.list(1);
+      // sidebar激活方法一
       // this.$parent.activeSidebar("business-chapter-sidebar");
     },
     methods: {
@@ -144,6 +146,9 @@
         _this.chapter = {};
         $("#form-modal").modal("show");
       },
+      /**
+       * 点击【刷新】，查询列表
+       */
       list(page){
         let _this = this;
         _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/list',{
@@ -151,8 +156,9 @@
           size: _this.$refs.pagination.size,
         }).then((response)=>{
           console.log("查询大章列表结果：",response);
-          _this.chapters = response.data.list;
-          _this.$refs.pagination.render(page,response.data.total);
+          let resp = response.data;
+          _this.chapters = resp.content.list;
+          _this.$refs.pagination.render(page,resp.content.total);
         })
       },
       /**
@@ -162,6 +168,11 @@
         let _this = this;
         _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save', _this.chapter).then((response)=>{
           console.log("保存新增信息：",response);
+          let resp = response.data;
+          if (resp.success){
+            $("#form-modal").modal("hide");
+            _this.list(1);
+          }
         })
       },
     }

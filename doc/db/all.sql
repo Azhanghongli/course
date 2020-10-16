@@ -69,3 +69,33 @@ create table `course` (
 ) engine=innodb default charset = utf8mb4 comment = '课程';
 insert into `course` (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
 values ('00000001', '测试课程01', '测试1', 7200, 19.9, '', 1, 'F', 'D',  100, 0, now(), now());
+#分类
+drop table if exists `category`;
+create table `category` (
+    `id` char(8) not null DEFAULT '' comment 'id',
+    `parent` char(8) not null DEFAULT '' comment '父id',
+    `name` varchar(50) not null comment '名称',
+    `sort` int comment '顺序',
+    primary key (`id`)
+) engine=innodb default charset = utf8mb4 comment = '分类';
+insert into `category` (id, parent, name, sort) values ('00000100', '00000000', '前端技术', 100);
+insert into `category` (id, parent, name, sort) values ('00000101', '00000100', 'html/css', 101);
+insert into `category` (id, parent, name, sort) values ('00000102', '00000100', 'JavaScript', 102);
+insert into `category` (id, parent, name, sort) values ('00000103', '00000100', 'vue', 103);
+insert into `category` (id, parent, name, sort) values ('00000104', '00000100', 'react.js', 104);
+insert into `category` (id, parent, name, sort) values ('00000105', '00000100', 'angular', 105);
+insert into `category` (id, parent, name, sort) values ('00000106', '00000100', 'node', 106);
+insert into `category` (id, parent, name, sort) values ('00000107', '00000100', 'jquery', 107);
+insert into `category` (id, parent, name, sort) values ('00000108', '00000100', '小程序', 108);
+insert into `category` (id, parent, name, sort) values ('00000200', '00000000', '后端技术', 200);
+insert into `category` (id, parent, name, sort) values ('00000201', '00000200', 'Java', 201);
+insert into `category` (id, parent, name, sort) values ('00000202', '00000200', 'spring boot', 202);
+insert into `category` (id, parent, name, sort) values ('00000203', '00000200', 'spring cloud', 203);
+insert into `category` (id, parent, name, sort) values ('00000204', '00000200', 'ssm', 204);
+insert into `category` (id, parent, name, sort) values ('00000205', '00000200', 'python', 205);
+insert into `category` (id, parent, name, sort) values ('00000206', '00000200', '爬虫', 206);
+insert into `category` (id, parent, name, sort) values ('00000300', '00000000', '移动开发', 300);
+insert into `category` (id, parent, name, sort) values ('00000301', '00000300', 'Android', 301);
+insert into `category` (id, parent, name, sort) values ('00000302', '00000300', 'iOS', 302);
+insert into `category` (id, parent, name, sort) values ('00000303', '00000300', 'react native', 303);
+insert into `category` (id, parent, name, sort) values ('00000304', '00000300', 'ionic', 304);

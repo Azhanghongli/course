@@ -42,7 +42,7 @@
         let formData = new window.FormData();
         let file = _this.$refs.file.files[0];
 
-        console.log(file);
+        console.log(JSON.stringify(file));
         /*
           file值
           name: "test.mp4"
@@ -54,10 +54,11 @@
          */
 
         //生成文件标识，标识多次上传的是不是同一文件
-        let key = hex_md5(file);//md5加密
+        let key = hex_md5(file.name + file.size + file.type);//md5加密
         let key10 = parseInt(key, 16);//转为10进制
         let key62 = Tool._10to62(key10);//转为62进制（26大写字母26小写字母10阿拉伯数字）
         console.log(key, key10, key62);
+        console.log(hex_md5(Array()));
 
         //判断文件格式
         let suffixs = _this.suffixs;

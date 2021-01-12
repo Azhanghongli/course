@@ -523,6 +523,8 @@
       $("body").attr("class", "no-skin");
       // console.log("admin");
       _this.activeSidebar(_this.$route.name.replace("/","-") + "-sidebar");
+
+      $.getScript('/ace/assets/js/ace.min.js');
     },
     watch: {
       $route: {
